@@ -35,7 +35,7 @@ def LoG(img, sigma):
   return img_binary
 
 # Membaca citra grayscale
-img = cv2.imread('C:/Users/Lenovo/Pictures/Camera Roll/WIN_20240625_08_15_09_Pro.jpg', 100)
+img = cv2.imread('C:\\Users\\lenov\\Pictures\\Camera Roll\\Saved Pictures\\pryg.jpg'', 100)
 
 # Menentukan nilai sigma
 sigma = 2
