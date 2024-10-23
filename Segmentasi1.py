@@ -37,7 +37,7 @@ def on_mouse(event,x,y,flag,param):
     S = p_sel[1]
     V = p_sel[2]
 
-img = cv2.imread("C:/Users/Lenovo/Pictures/anggur.jpeg", 250)
+img = cv2.imread("C:\\Users\\lenov\\Pictures\\Camera Roll\\Saved Pictures\\pryg.jpg'", 250)
 hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 cv2.namedWindow("camera", 1)
 cv2.namedWindow("camera2", 2)
