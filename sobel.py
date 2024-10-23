@@ -16,7 +16,7 @@ import cv2
 import numpy as np
 
 # Membaca gambar dari file
-img = cv2.imread('C:/Users/Lenovo/Pictures/Camera Roll/WIN_20240625_08_15_09_Pro.jpg', 100)
+img = cv2.imread('C:\\Users\\lenov\\Pictures\\Camera Roll\\Saved Pictures\\pryg.jpg'', 100)
 
 # Menggunakan operator Sobel untuk mendeteksi tepi
 sobelx = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=3)  # Gradien tepi pada arah X
