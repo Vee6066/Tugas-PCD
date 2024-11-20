@@ -1,48 +1,25 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Nov 20 09:01:22 2024
+Created on Wed Nov  6 08:09:31 2024
 
-@author: LENOVO
+@author: lenovo
 """
 
-import cv2                     # Mengimpor pustaka OpenCV untuk pemrosesan citra
-import numpy as np             # Mengimpor pustaka NumPy untuk operasi numerik
+#face detection
+import cv2 # menyertakan library cv2 dari opencv
+import numpy as np
 
-def calculate_mse(original, distorted):
-    """
-    Fungsi untuk menghitung Mean Square Error (MSE) antara citra asli dan citra yang terdistorsi.
-    MSE dihitung dengan mengambil rata-rata kuadrat selisih antara dua citra.
-    """
-    # Menghitung selisih antara citra asli dan citra yang terdistorsi
-    err = np.sum((original.astype("float") - distorted.astype("float")) ** 2)
-    
-    # Menghitung MSE dengan membagi total kesalahan dengan jumlah pixel
-    mse = err / float(original.shape[0] * original.shape[1])
-    
-    return mse                    # Mengembalikan nilai MSE
+face_cascade = cv2.CascadeClassifier('C:/Users/LENOVO/Downloads/haarcascade_frontalface_default.xml')
 
-def calculate_psnr(original, distorted):
-    """
-    Fungsi untuk menghitung Peak Signal-to-Noise Ratio (PSNR).
-    PSNR dihitung berdasarkan nilai MSE.
-    """
-    mse = calculate_mse(original, distorted)  # Menghitung MSE terlebih dahulu
-    if mse == 0:                              # Jika MSE adalah 0, artinya kedua citra identik
-        return float("inf")                   # Kembalikan tak hingga sebagai PSNR
+image = cv2.imread("C:/Users/LENOVO/Pictures/Camera Roll/WIN_20241120_09_26_08_Pro.jpg")
+img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-    # Menghitung PSNR menggunakan rumus
-    psnr = 10 * np.log10(255 ** 2 / mse)     
-    
-    return psnr                                # Mengembalikan nilai PSNR
+faces = face_cascade.detectMultiScale(img, scaleFactor=1.1)
+for (x,y,w,h) in faces: #looping sejumlah wajah yang ditemukan (xy kordinat wh lebar tinggi)
+    cv2.rectangle(image, (x,y), (x+w, y+h), (0,0,155), 3)
 
-# Membaca citra asli dan citra terdistorsi dari file
-original_image = cv2.imread('C:/Users/LENOVO/Pictures/Camera Roll/WIN_20241120_09_26_08_Pro.jpg')  # Mengimpor citra asli
-distorted_image = cv2.imread('C:/Users/LENOVO/Pictures/Camera Roll/WIN_20241120_09_26_08_Pro.jpg') # Mengimpor citra yang terdistorsi
 
-# Menghitung MSE dan PSNR
-mse_value = calculate_mse(original_image, distorted_image)    # Menghitung MSE
-psnr_value = calculate_psnr(original_image, distorted_image)  # Menghitung PSNR
-
-# Menampilkan hasil
-print(f'Mean Square Error (MSE): {mse_value}')  # Mencetak nilai MSE
-print(f'Peak Signal-to-Noise Ratio (PSNR): {psnr_value} dB')  # Mencetak nilai PSNR
+cv2.imshow("display", image)
+#cv2.imwrite("display", image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
