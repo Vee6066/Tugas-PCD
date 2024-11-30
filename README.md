@@ -61,7 +61,7 @@ Kinerja deteksi dapat dipengaruhi oleh kualitas gambar, pencahayaan, ekspresi wa
 Untuk deteksi wajah yang lebih kompleks dan akurat, dapat digunakan model deep learning yang lebih canggih.
 
 ## Face Detection
-'''python
+```python
 import cv2 # menyertakan library cv2 dari opencv
 import numpy as np
 
@@ -79,7 +79,7 @@ cv2.imshow("display", image)
 #cv2.imwrite("display", image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-'''
+```
 
 ## Hasil
 ![image](https://github.com/user-attachments/assets/406bcaef-fec7-4add-8fe0-2dfc8775190c)
